@@ -67,6 +67,7 @@ opencode-council
 
 Usage:
   opencode-council install [--global]
+  opencode-council update [--global]
   opencode-council doctor [--json]
 
 Development install from this checkout:
@@ -118,6 +119,6 @@ function doctor() {
   if (!opencode.ok) process.exitCode = 1;
 }
 
-if (command === "install") installCommand();
+if (command === "install" || command === "update") installCommand();
 else if (command === "doctor") doctor();
 else help();

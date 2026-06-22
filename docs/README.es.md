@@ -40,11 +40,29 @@ opencode plugin @hxnnxs/opencode-council
 
 Reinicia OpenCode después de instalar. OpenCode carga los plugins al arrancar.
 
+Si `/council-settings` no aparece, añade el entrypoint TUI en `~/.config/opencode/tui.json`:
+
+```json
+{
+  "plugin": ["@hxnnxs/opencode-council/tui"]
+}
+```
+
 Instalador CLI opcional:
 
 ```bash
 npx @hxnnxs/opencode-council install
 ```
+
+## Actualización
+
+El paquete no tiene auto-update en segundo plano y OpenCode no recarga plugins en caliente. Actualiza el plugin npm y reinicia OpenCode:
+
+```bash
+opencode plugin @hxnnxs/opencode-council
+```
+
+Si fijaste una versión, cambia el spec explícitamente, por ejemplo `@hxnnxs/opencode-council@0.1.1`. `.opencode-council.json` se conserva.
 
 ## Uso
 
@@ -93,6 +111,8 @@ npm pack --dry-run
 ```
 
 Este paquete no tiene build step.
+
+El workflow de release en tags `v*` verifica el paquete, construye el tarball npm y lo adjunta al GitHub Release. npm publish se ejecuta aparte o de forma explícita para que el build del tag no falle por credenciales npm.
 
 ## Estado
 

@@ -40,11 +40,29 @@ opencode plugin @hxnnxs/opencode-council
 
 После установки перезапустите OpenCode. Плагины загружаются на старте.
 
+Если `/council-settings` не появляется, добавьте TUI entrypoint в `~/.config/opencode/tui.json`:
+
+```json
+{
+  "plugin": ["@hxnnxs/opencode-council/tui"]
+}
+```
+
 Опционально:
 
 ```bash
 npx @hxnnxs/opencode-council install
 ```
+
+## Обновление
+
+У пакета нет фонового auto-update, а OpenCode не hot-reload-ит плагины. Обновите npm plugin и перезапустите OpenCode:
+
+```bash
+opencode plugin @hxnnxs/opencode-council
+```
+
+Если версия pinned, укажите новую явно, например `@hxnnxs/opencode-council@0.1.1`. `.opencode-council.json` сохранится.
 
 ## Использование
 
@@ -93,6 +111,8 @@ npm pack --dry-run
 ```
 
 Пакет без build step.
+
+Release workflow на tag `v*` проверяет пакет, собирает npm tarball и прикладывает его к GitHub Release. npm publish запускается отдельно/явно, чтобы tag build не падал из-за npm credentials.
 
 ## Статус
 

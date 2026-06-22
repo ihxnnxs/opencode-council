@@ -48,6 +48,14 @@ opencode plugin @hxnnxs/opencode-council
 
 Restart OpenCode after installing. OpenCode loads plugins at startup.
 
+Settings modal note: the server plugin registers `/council*` commands; the settings modal is a TUI plugin entrypoint at `@hxnnxs/opencode-council/tui`. Recent OpenCode builds load this from TUI plugin config. If `/council-settings` does not appear, add the TUI entrypoint to `~/.config/opencode/tui.json`:
+
+```json
+{
+  "plugin": ["@hxnnxs/opencode-council/tui"]
+}
+```
+
 Optional CLI installer:
 
 ```bash
@@ -62,6 +70,22 @@ cd opencode-council
 npm install
 opencode plugin "$(pwd)"
 ```
+
+## Updating
+
+OpenCode does not hot-reload plugins and this package does not self-update in the background. Update the npm package through OpenCode, then restart OpenCode:
+
+```bash
+opencode plugin @hxnnxs/opencode-council
+```
+
+Equivalent CLI wrapper:
+
+```bash
+npx @hxnnxs/opencode-council@latest update
+```
+
+If you pinned a version, change the spec explicitly, for example `@hxnnxs/opencode-council@0.1.1`. Project settings in `.opencode-council.json` are preserved.
 
 ## Usage
 
@@ -235,6 +259,7 @@ This keeps the default model safe for review and architecture advice. If externa
 Files:
 
 - `index.js` - OpenCode plugin, `council_ask` tool, command registration, advisor orchestration
+- `tui.js` - TUI plugin entrypoint for `/council-settings`
 - `bin/opencode-council.js` - install wrapper and diagnostics CLI
 - `SECURITY.md` - safety model and vulnerability reporting
 - `.opencode-council.json` - optional project settings written by `/council-settings`
@@ -262,6 +287,8 @@ npm pack --dry-run
 ```
 
 This package has no build step.
+
+Release builds are produced by GitHub Actions on `v*` tags. The workflow runs checks, builds the npm tarball with `npm pack`, uploads it as an artifact, and attaches it to the GitHub release. npm publishing is intentionally explicit so tag builds do not fail when npm credentials are missing or scoped incorrectly.
 
 ## Project Status
 

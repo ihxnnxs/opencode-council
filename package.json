@@ -1,6 +1,6 @@
 {
   "name": "@hxnnxs/opencode-council",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "OpenCode-native decision council for architecture, review, debugging, and high-stakes coding choices",
   "type": "module",
   "license": "MIT",
@@ -19,6 +19,9 @@
       "import": "./index.js"
     },
     "./plugin": {
+      "import": "./index.js"
+    },
+    "./server": {
       "import": "./index.js"
     },
     "./tui": {

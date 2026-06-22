@@ -40,11 +40,29 @@ opencode plugin @hxnnxs/opencode-council
 
 安装后重启 OpenCode。插件只在启动时加载。
 
+如果 `/council-settings` 没有出现，把 TUI entrypoint 加到 `~/.config/opencode/tui.json`：
+
+```json
+{
+  "plugin": ["@hxnnxs/opencode-council/tui"]
+}
+```
+
 可选 CLI 安装器：
 
 ```bash
 npx @hxnnxs/opencode-council install
 ```
+
+## 更新
+
+这个包没有后台 auto-update，OpenCode 也不会热重载插件。更新 npm plugin 后重启 OpenCode：
+
+```bash
+opencode plugin @hxnnxs/opencode-council
+```
+
+如果你 pin 了版本，请显式改成新版本，例如 `@hxnnxs/opencode-council@0.1.1`。`.opencode-council.json` 会保留。
 
 ## 使用
 
@@ -93,6 +111,8 @@ npm pack --dry-run
 ```
 
 此包没有 build step。
+
+Release workflow 会在 `v*` tag 上检查包、构建 npm tarball，并把它附加到 GitHub Release。npm publish 需要单独/显式执行，避免 tag build 因 npm credentials 失败。
 
 ## 状态
 
