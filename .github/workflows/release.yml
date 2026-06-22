@@ -14,6 +14,8 @@ jobs:
   publish:
     name: Build and publish npm package
     runs-on: ubuntu-latest
+    env:
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     steps:
       - name: Checkout
@@ -41,6 +43,10 @@ jobs:
           path: "*.tgz"
 
       - name: Publish to npm
+        if: env.NODE_AUTH_TOKEN != ''
         run: npm publish --access public --provenance
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Skip npm publish
+        if: env.NODE_AUTH_TOKEN == ''
+        run: |
+          echo "NPM_TOKEN is not configured; built the package artifact but skipped npm publish."
