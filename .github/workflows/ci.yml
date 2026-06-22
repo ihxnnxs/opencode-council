@@ -11,8 +11,16 @@ permissions:
 
 jobs:
   check:
-    name: Check package
-    runs-on: ubuntu-latest
+    name: Check package (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
 
     steps:
       - name: Checkout
