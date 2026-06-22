@@ -1,0 +1,65 @@
+{
+  "name": "@hxnnxs/opencode-council",
+  "version": "0.1.0",
+  "description": "OpenCode-native decision council for architecture, review, debugging, and high-stakes coding choices",
+  "type": "module",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ihxnnxs/opencode-council.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ihxnnxs/opencode-council/issues"
+  },
+  "homepage": "https://github.com/ihxnnxs/opencode-council#readme",
+  "main": "./index.js",
+  "exports": {
+    ".": {
+      "import": "./index.js"
+    },
+    "./plugin": {
+      "import": "./index.js"
+    },
+    "./tui": {
+      "import": "./tui.js"
+    }
+  },
+  "bin": {
+    "opencode-council": "bin/opencode-council.js"
+  },
+  "files": [
+    "assets/",
+    "bin/",
+    "docs/README*.md",
+    "index.js",
+    "tui.js",
+    "README.md",
+    "SECURITY.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "check": "node --check index.js && node --check tui.js && node --check bin/opencode-council.js",
+    "prepack": "npm run check"
+  },
+  "dependencies": {
+    "@opencode-ai/plugin": "^1.17.4"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "ai-council",
+    "llm-council",
+    "multi-model",
+    "code-review",
+    "architecture"
+  ],
+  "engines": {
+    "node": ">=20",
+    "opencode": ">=1.17.4"
+  }
+}
